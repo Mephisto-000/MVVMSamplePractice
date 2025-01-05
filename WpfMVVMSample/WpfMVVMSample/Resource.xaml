@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:WpfMVVMSample.ViewModels"
+                    xmlns:vw="clr-namespace:WpfMVVMSample.Views">
+    
+    <!--在 WPF 的 MVVM 架構中，ResourceDictionary 扮演著關鍵角色，主要負責管理應用程式中的資源，如樣式、控制項模板、資料模板等。-->
+
+    <!-- 定義對應 FirstViewModel 的資料模板 -->
+    <DataTemplate DataType="{x:Type vm:FirstViewModel}">
+        <!-- 顯示 FirstView，與 FirstViewModel 綁定 -->
+        <vw:FirstView/>
+    </DataTemplate>
+
+    <!-- 定義對應 SecondViewModel 的資料模板 -->
+    <DataTemplate DataType="{x:Type vm:SecondViewModel}">
+        <!-- 顯示 SecondView，與 SecondViewModel 綁定 -->
+        <vw:SecondView/>
+    </DataTemplate>
+
+    <!-- 定義選項卡項目模板 -->
+    <DataTemplate x:Key="TabItemTemplate">
+        <DockPanel Width="Auto">
+            <!-- 使用 ContentPresenter 顯示綁定的 DisplayName -->
+            <ContentPresenter Content="{Binding Path=DisplayName}" VerticalAlignment="Center"/>
+        </DockPanel>
+    </DataTemplate>
+
+    <!-- 定義工作區的模板，使用 TabControl 顯示多視圖 -->
+    <DataTemplate x:Key="WorkspacesTemplate">
+        <TabControl IsSynchronizedWithCurrentItem="True"
+                    Background="Transparent" 
+                    ItemsSource="{Binding}" 
+                    ItemTemplate="{StaticResource TabItemTemplate}"/>
+    </DataTemplate>
+
+</ResourceDictionary>
